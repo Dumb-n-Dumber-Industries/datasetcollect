@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&family=Open+Sans&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <script type="text/javascript" src="{% static 'particles.js' %}"></script>
+    <script type="text/javascript" src="{% static 'app.js' %}"></script>
+    <script defer type="text/javascript" src="{% static 'ripple_click.js' %}"></script>
+    <div class="waveWrapper waveAnimation">
+        <div class="waveWrapperInner bgTop">
+          <div class="wave waveTop" style="background-image: url('https://i.ibb.co/DWtHQjz/wave-top.png')"></div>
+        </div>
+        <div class="waveWrapperInner bgMiddle">
+          <div class="wave waveMiddle" style="background-image: url('https://i.ibb.co/f1jcTBG/wave-mid.png')"></div>
+        </div>
+        <div class="waveWrapperInner bgBottom">
+          <div class="wave waveBottom" style="background-image: url('https://i.ibb.co/t2Gqkxj/wave-bot.png')"></div>
+        </div>
+      </div>
+    <div class="wrapper">
+        <div class="title">
+            <h1>What do you <span>feel</span> about that?</h1>
+        </div>
+        <div class="content">
+            <div class="data">
+                {{text.text}}
+            </div>
+            <div class="form">
+                <form id="main_form">
+                    
+                    <button type="submit" class="submitbtn" value="1" id="Emo">Emotive</button>
+                    <button type="submit" class="submitbtn" value="2" id="Neu">Neutral</button>
+                    <button type="submit" class="submitbtn" value="3" id="Sub">Subjective</button>
+                    <button type="submit" class="submitbtn" value="4" id="Obj">Objective</button>
+                    <button type="submit" id="garbage" value="5"><img src="{% static 'images/garbage.svg' %}" id="grbimg" alt=""></button>
+                    <button type="button" id="info" value="1" name="buttoninfo" onclick="openPopup()"><img src="{% static 'images/info.svg' %}" id="infoimg" alt=""></button>
+                    <input type="text" id="text_back" value={{text.pk}}>
+                    <input type="text" id="selector" value={{selector}}>
+                </form>
+                <div class="popup" id="popup">
+                  <p>If the text seems unreadable to you, please let us know by clicking on the dumpster icon)</p>
+                  <button type="button" onclick="closePopup()">Got it!</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <span>DADINC 2021 - 2023</span>
+            <a href="yandex.ru" ><img src="{% static 'images/git.png' %}" id="git" alt="git icon" ></a>
+            <a href="google.com" ><img src="{% static 'images/tg.png' %}" id="tg" alt="" ></a>
+        </div>
+    </div>
+    <script>
+      let popup = document.getElementById("popup");
+      function openPopup(){
+        popup.classList.add("open-popup");
+      }
+      function closePopup(){
+        popup.classList.remove("open-popup");
+      }
+    </script>
+    <script type="text/javascript">
+      $(document).on('click', '#Emo', function (e) {
+          e.preventDefault();
+          $.ajax({
+              type: 'GET',
+              url: '/change/',
+              data: {
+              to_change: $('#Emo').val(),
+              text_id: $('#text_back').val(),
+              factor: $('#selector').val(),
+              },
+              success: function (data) {
+                  $('.data').html('');
+                  $('.data').html(data['text']);
+                  $('#text_back').val(data['index']);
+              }
+          })
+      })
+      $(document).on('click', '#Neu', function (e) {
+          e.preventDefault();
+          $.ajax({
+              type: 'GET',
+              url: '/change/',
+              data: {
+              to_change: $('#Neu').val(),
+              text_id: $('#text_back').val(),
+              factor: $('#selector').val(),
+              },
+              success: function (data) {
+                  console.log(data)
+                  $('.data').html('');
+                  $('.data').html(data['text']);
+                  $('#text_back').val(data['index']);
+              }
+          })
+      })
+      $(document).on('click', '#Sub', function (e) {
+          e.preventDefault();
+          $.ajax({
+              type: 'GET',
+              url: '/change/',
+              data: {
+              to_change: $('#Sub').val(),
+              text_id: $('#text_back').val(),
+              factor: $('#selector').val(),
+              },
+              success: function (data) {
+                  $('.data').html('');
+                  $('.data').html(data['text']);
+                  $('#text_back').val(data['index']);
+              }
+          })
+      })
+      $(document).on('click', '#Obj', function (e) {
+          e.preventDefault();
+          $.ajax({
+              type: 'GET',
+              url: '/change/',
+              data: {
+              to_change: $('#Obj').val(),
+              text_id: $('#text_back').val(),
+              factor: $('#selector').val(),
+              },
+              success: function (data) {
+                  $('.data').html('');
+                  $('.data').html(data['text']);
+                  $('#text_back').val(data['index']);
+              }
+          })
+      })
+      $(document).on('click', '#garbage', function (e) {
+          e.preventDefault();
+          $.ajax({
+              type: 'GET',
+              url: '/change/',
+              data: {
+              to_change: $('#garbage').val(),
+              text_id: $('#text_back').val(),
+              factor: $('#selector').val(),
+              },
+              success: function (data) {
+                  $('.data').html('');
+                  $('.data').html(data['text']);
+                  $('#text_back').val(data['index']);
+              }
+          })
+      })
+      </script>
+</body>
+</html>
