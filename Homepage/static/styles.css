@@ -9,7 +9,10 @@
 	box-sizing: border-box;
 }
 :focus,:active{outline: none;}
-a:focus,a:active{outline: none;}
+a:focus,
+a:active {
+    outline: none;
+}
 
 nav,footer,header,aside{display: block;}
 
@@ -55,7 +58,7 @@ body {
 .data::-webkit-scrollbar {
     width: 0.25rem;
 }
-  
+
 .data::-webkit-scrollbar-track {
     background: #1e1e24;
 }
@@ -72,7 +75,7 @@ html{
     align-items: center;
     height: 100%;
 }
-.content { 
+.content {
     /* z-index: 50; */
     position: relative;
     padding: 20px;
@@ -111,7 +114,7 @@ html{
 .title {
     font-size: 30px;
     font-weight: 600;
-    margin-bottom: -2vh;
+    /* margin-bottom: -2vh; */
     text-align: center;
     text-shadow: 1px 2px 2px #A224AD;
 }
@@ -174,6 +177,7 @@ form {
     background-color: red;
     animation: rippleEffect 1s linear infinite;
   }
+
   @keyframes rippleEffect {
     from {
       width: 0;
@@ -201,7 +205,7 @@ form {
 .content form :nth-child(1):not(#garbage, #info, div):not(img) {
     border: 3px rgb(20, 173, 53) solid;
     background-color: rgba(20, 173, 53,0.1);
-    
+
 }
 .content form :nth-child(2) {
     border: 3px rgb(160, 160, 160) solid;
@@ -264,7 +268,7 @@ form {
 .popup{
     position: absolute;
     text-align: center;
-    padding: 5px 20px 10px 20px;
+    padding: 10px 25px 15px 25px;
     background: rgb(10, 10, 10);
     box-shadow: 0px 0px 20px rgb(243, 29, 100);
     transform: translate(35%, 10%) scale(0.05);
@@ -290,7 +294,7 @@ form {
     visibility: visible;
     /* top: -150%; */
     right: 50%;
-    transform: translate(50%, -35vh) scale(1);
+    transform: translate(50%, -400px) scale(1);
 }
 @keyframes shake {
     0% { transform: rotate(5deg); filter: invert(94%) sepia(7%) saturate(1080%) hue-rotate(307deg) brightness(104%) contrast(107%);}
@@ -300,7 +304,7 @@ form {
     100% { transform: rotate(5deg); filter: invert(19%) sepia(89%) saturate(2888%) hue-rotate(356deg) brightness(101%) contrast(78%);}
 }
 .title {
-    padding: 0 0 5% 0;
+    padding: 0 0 5vh 0;
 }
 .footer span{
     padding-top: 9px;
@@ -385,7 +389,7 @@ ul li .check{
 }
   ul li:hover .check {
     border: 5px solid #FFFFFF;
-  } 
+  }
 ul li .check::before {
     display: block;
     position: absolute;
@@ -394,7 +398,7 @@ ul li .check::before {
     height: 11px;
     width: 11px;
     top: 2px;
-    left: 2px; 
+    left: 2px;
     margin: auto;
     transition: background 0.1s linear;
     -webkit-transition: background 0.1s linear;
@@ -425,26 +429,28 @@ input[type=radio]:checked ~ label{
 .okbutton {
     display: block;
     position: absolute;
+    color: rgb(182, 182, 182);
     height: 50px;
     width: 200px;
-    background-color: #0DFF92;
+    background-color: rgb(13, 255, 146, 0.1);
+    border: solid 5px rgb(13, 255, 146);
     bottom: 10vh;
     left: calc(50% - 100px);
     border-radius: 5px;
-    text-shadow: white 1px 1px 1px;
+    /* text-shadow: rgb(26, 26, 26) 1px 1px 1px; */
     font-size: 25px;
     font-family: 'Noto Sans', sans-serif;
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
     transition: all 400ms;
-    
+
 }
 .okbutton:hover{
     box-shadow: 0 0 10px #0DFF92;
     width: 200px;
-    text-shadow: white 2px 2px 3px;
+    /* text-shadow: white 2px 2px 3px; */
     height: 50px;
-    
+
 
 }
 @keyframes move_wave {

@@ -10,13 +10,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&family=Open+Sans&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <title>Document</title>
+    <title>DataCollect</title>
 </head>
 <body>
     <div id="particles-js"></div>
     <script type="text/javascript" src="{% static 'particles.js' %}"></script>
     <script type="text/javascript" src="{% static 'app.js' %}"></script>
     <script defer type="text/javascript" src="{% static 'ripple_click.js' %}"></script>
+    <script defer type="text/javascript" src="{% static 'toggle.js' %}"></script>
     <div class="waveWrapper waveAnimation">
         <div class="waveWrapperInner bgTop">
           <div class="wave waveTop" style="background-image: url('https://i.ibb.co/DWtHQjz/wave-top.png')"></div>
@@ -39,10 +40,10 @@
             <div class="form">
                 <form id="main_form">
                     
-                    <button type="submit" class="submitbtn" value="1" id="Emo">Emotive</button>
-                    <button type="submit" class="submitbtn" value="2" id="Neu">Neutral</button>
-                    <button type="submit" class="submitbtn" value="3" id="Sub">Subjective</button>
-                    <button type="submit" class="submitbtn" value="4" id="Obj">Objective</button>
+                    <button type="submit" class="submitbtn" value="0" id="Emo">Emotive</button>
+                    <button type="submit" class="submitbtn" value="0" id="Neu">Neutral</button>
+                    <button type="submit" class="submitbtn" value="0" id="Sub">Subjective</button>
+                    <button type="submit" class="submitbtn" value="0" id="Obj">Objective</button>
                     <button type="submit" id="garbage" value="5"><img src="{% static 'images/garbage.svg' %}" id="grbimg" alt=""></button>
                     <button type="button" id="info" value="1" name="buttoninfo" onclick="openPopup()"><img src="{% static 'images/info.svg' %}" id="infoimg" alt=""></button>
                     <input type="text" id="text_back" value={{text.pk}}>
@@ -73,72 +74,129 @@
     <script type="text/javascript">
       $(document).on('click', '#Emo', function (e) {
           e.preventDefault();
+          
+          if ((Number($('#Emo').val()) + Number($('#Neu').val()) + Number($('#Obj').val()) + Number($('#Sub').val())) == 2) {
           $.ajax({
               type: 'GET',
               url: '/change/',
               data: {
-              to_change: $('#Emo').val(),
+              state: {'Emo':$('#Emo').val(), 'Neu':$('#Neu').val(), 'Sub':$('#Sub').val(), 'Obj':$('#Obj').val()},
               text_id: $('#text_back').val(),
               factor: $('#selector').val(),
               },
               success: function (data) {
+                  $('#Emo').val(0)
+                  $('#Emo').css('width', '45%')
+                  $('#Emo').css('box-shadow', '')
+                  $('#Neu').val(0)
+                  $('#Neu').css('width', '45%')
+                  $('#Neu').css('box-shadow', '')
+                  $('#Obj').val(0)
+                  $('#Obj').css('width', '45%')
+                  $('#Obj').css('box-shadow', '')
+                  $('#Sub').val(0)
+                  $('#Sub').css('width', '45%')
+                  $('#Sub').css('box-shadow', '')
                   $('.data').html('');
                   $('.data').html(data['text']);
                   $('#text_back').val(data['index']);
+                  $('.data').scrollTop(0, -1000);
               }
-          })
+          }) }
       })
       $(document).on('click', '#Neu', function (e) {
           e.preventDefault();
+          if ((Number($('#Emo').val()) + Number($('#Neu').val()) + Number($('#Obj').val()) + Number($('#Sub').val())) == 2) {
           $.ajax({
               type: 'GET',
               url: '/change/',
               data: {
-              to_change: $('#Neu').val(),
+              state: {'Emo':$('#Emo').val(), 'Neu':$('#Neu').val(), 'Sub':$('#Sub').val(), 'Obj':$('#Obj').val()},
               text_id: $('#text_back').val(),
               factor: $('#selector').val(),
               },
               success: function (data) {
-                  console.log(data)
+                $('#Emo').val(0)
+                  $('#Emo').css('width', '45%')
+                  $('#Emo').css('box-shadow', '')
+                  $('#Neu').val(0)
+                  $('#Neu').css('width', '45%')
+                  $('#Neu').css('box-shadow', '')
+                  $('#Obj').val(0)
+                  $('#Obj').css('width', '45%')
+                  $('#Obj').css('box-shadow', '')
+                  $('#Sub').val(0)
+                  $('#Sub').css('width', '45%')
+                  $('#Sub').css('box-shadow', '')
                   $('.data').html('');
                   $('.data').html(data['text']);
                   $('#text_back').val(data['index']);
+                  $('.data').scrollTop(0, -1000);
               }
-          })
+          })}
       })
       $(document).on('click', '#Sub', function (e) {
           e.preventDefault();
+          if ((Number($('#Emo').val()) + Number($('#Neu').val()) + Number($('#Obj').val()) + Number($('#Sub').val())) == 2) {
           $.ajax({
               type: 'GET',
               url: '/change/',
               data: {
-              to_change: $('#Sub').val(),
+              state: {'Emo':$('#Emo').val(), 'Neu':$('#Neu').val(), 'Sub':$('#Sub').val(), 'Obj':$('#Obj').val()},
               text_id: $('#text_back').val(),
               factor: $('#selector').val(),
               },
               success: function (data) {
+                $('#Emo').val(0)
+                  $('#Emo').css('width', '45%')
+                  $('#Emo').css('box-shadow', '')
+                  $('#Neu').val(0)
+                  $('#Neu').css('width', '45%')
+                  $('#Neu').css('box-shadow', '')
+                  $('#Obj').val(0)
+                  $('#Obj').css('width', '45%')
+                  $('#Obj').css('box-shadow', '')
+                  $('#Sub').val(0)
+                  $('#Sub').css('width', '45%')
+                  $('#Sub').css('box-shadow', '')
                   $('.data').html('');
                   $('.data').html(data['text']);
                   $('#text_back').val(data['index']);
+                  $('.data').scrollTop(0, -1000);
               }
-          })
+          })}
       })
       $(document).on('click', '#Obj', function (e) {
           e.preventDefault();
+          if ((Number($('#Emo').val()) + Number($('#Neu').val()) + Number($('#Obj').val()) + Number($('#Sub').val())) == 2) {
+            var info = {'Emo':$('#Emo').val(), 'Neu':$('#Neu').val(), 'Sub':$('#Sub').val(), 'Obj':$('#Obj').val()}
           $.ajax({
               type: 'GET',
               url: '/change/',
               data: {
-              to_change: $('#Obj').val(),
+              state: info,
               text_id: $('#text_back').val(),
               factor: $('#selector').val(),
               },
               success: function (data) {
+                  $('#Emo').val(0)
+                  $('#Emo').css('width', '45%')
+                  $('#Emo').css('box-shadow', '')
+                  $('#Neu').val(0)
+                  $('#Neu').css('width', '45%')
+                  $('#Neu').css('box-shadow', '')
+                  $('#Obj').val(0)
+                  $('#Obj').css('width', '45%')
+                  $('#Obj').css('box-shadow', '')
+                  $('#Sub').val(0)
+                  $('#Sub').css('width', '45%')
+                  $('#Sub').css('box-shadow', '')
                   $('.data').html('');
                   $('.data').html(data['text']);
                   $('#text_back').val(data['index']);
+                  $('.data').scrollTop(0, -1000);
               }
-          })
+          })}
       })
       $(document).on('click', '#garbage', function (e) {
           e.preventDefault();
@@ -154,6 +212,7 @@
                   $('.data').html('');
                   $('.data').html(data['text']);
                   $('#text_back').val(data['index']);
+                  $('.data').scrollTop(0, -1000);
               }
           })
       })
