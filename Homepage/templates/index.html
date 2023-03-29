@@ -39,7 +39,7 @@
             </div>
             <div class="form">
                 <form id="main_form">
-                    
+
                     <button type="submit" class="submitbtn" value="0" id="Emo">Emotive</button>
                     <button type="submit" class="submitbtn" value="0" id="Neu">Neutral</button>
                     <button type="submit" class="submitbtn" value="0" id="Sub">Subjective</button>
@@ -48,6 +48,8 @@
                     <button type="button" id="info" value="1" name="buttoninfo" onclick="openPopup()"><img src="{% static 'images/info.svg' %}" id="infoimg" alt=""></button>
                     <input type="text" id="text_back" value={{text.pk}}>
                     <input type="text" id="selector" value={{selector}}>
+                    <div id="switch1"></div>
+                    <div id="switch2"></div>
                 </form>
                 <div class="popup" id="popup">
                   <p>If the text seems unreadable to you, please let us know by clicking on the dumpster icon)</p>
@@ -55,7 +57,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="footer">
             <span>DADINC 2021 - 2023</span>
             <a href="https://github.com/Dumb-n-Dumber-Industries" ><img src="{% static 'images/git.png' %}" id="git" alt="git icon" ></a>
@@ -74,7 +76,7 @@
     <script type="text/javascript">
       $(document).on('click', '#Emo', function (e) {
           e.preventDefault();
-          
+
           if ((Number($('#Emo').val()) + Number($('#Neu').val()) + Number($('#Obj').val()) + Number($('#Sub').val())) == 2) {
           $.ajax({
               type: 'GET',
@@ -85,6 +87,16 @@
               factor: $('#selector').val(),
               },
               success: function (data) {
+                  $('#switch1').css('transform', 'translate(117%,-90px)')
+                  $('#switch1').css('border-radius', '10px')
+                  $('#switch2').css('border-radius', '10px')
+                  $('#switch1').css('background-color', 'rgba(255, 255, 255, 0.5)')
+                  $('#switch2').css('background-color', 'rgba(255, 255, 255, 0.5)')
+                  $('#switch2').css('transform', 'translate(117%, -45px)')
+                  $('#switch1').css('margin', '0 33%')
+                $('#switch1').css('width', '10%')
+                $('#switch2').css('margin', '0 33%')
+                $('#switch2').css('width', '10%')
                   $('#Emo').val(0)
                   $('#Emo').css('width', '45%')
                   $('#Emo').css('box-shadow', '')
@@ -116,6 +128,16 @@
               factor: $('#selector').val(),
               },
               success: function (data) {
+                $('#switch1').css('transform', 'translate(117%,-90px)')
+                $('#switch1').css('border-radius', '10px')
+                  $('#switch2').css('border-radius', '10px')
+                $('#switch1').css('background-color', 'rgba(255, 255, 255, 0.5)')
+                  $('#switch2').css('background-color', 'rgba(255, 255, 255, 0.5)')
+                $('#switch2').css('transform', 'translate(117%, -45px)')
+                $('#switch1').css('margin', '0 33%')
+                $('#switch1').css('width', '10%')
+                $('#switch2').css('margin', '0 33%')
+                $('#switch2').css('width', '10%')
                 $('#Emo').val(0)
                   $('#Emo').css('width', '45%')
                   $('#Emo').css('box-shadow', '')
@@ -147,6 +169,16 @@
               factor: $('#selector').val(),
               },
               success: function (data) {
+                $('#switch1').css('transform', 'translate(117%,-90px)')
+                $('#switch1').css('border-radius', '10px')
+                  $('#switch2').css('border-radius', '10px')
+                $('#switch1').css('background-color', 'rgba(255, 255,255, 0.5)')
+                  $('#switch2').css('background-color', 'rgba(255, 255,255, 0.5)')
+                $('#switch2').css('transform', 'translate(117%, -45px)')
+                $('#switch1').css('margin', '0 33%')
+                $('#switch1').css('width', '10%')
+                $('#switch2').css('margin', '0 33%')
+                $('#switch2').css('width', '10%')
                 $('#Emo').val(0)
                   $('#Emo').css('width', '45%')
                   $('#Emo').css('box-shadow', '')
@@ -179,6 +211,16 @@
               factor: $('#selector').val(),
               },
               success: function (data) {
+                $('#switch1').css('transform', 'translate(117%,-90px)')
+                $('#switch1').css('border-radius', '10px')
+                  $('#switch2').css('border-radius', '10px')
+                $('#switch1').css('background-color', 'rgba(255, 255,255, 0.5)')
+                  $('#switch2').css('background-color', 'rgba(255, 255,255, 0.5)')
+                $('#switch2').css('transform', 'translate(117%, -45px)')
+                $('#switch1').css('margin', '0 33%')
+                $('#switch1').css('width', '10%')
+                $('#switch2').css('margin', '0 33%')
+                $('#switch2').css('width', '10%')
                   $('#Emo').val(0)
                   $('#Emo').css('width', '45%')
                   $('#Emo').css('box-shadow', '')
